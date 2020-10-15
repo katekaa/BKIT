@@ -12,7 +12,7 @@ namespace lab2Csh
     abstract class Figure
     {
         public string Type { get; set; }
-        
+        public int a;
         public abstract double Area();
         public override string ToString()
         {
