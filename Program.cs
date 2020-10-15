@@ -9,16 +9,23 @@ using System.Threading.Tasks;
 
 namespace lab2Csh
 {
-    abstract class Figure
+    abstract class Figure: IComparable
     {
         public string Type { get; set; }
-        public int a;
+        
         public abstract double Area();
         public override string ToString()
         {
             return this.Type + " площадью " + this.Area().ToString();
         }
+        public int CompateTo(object fig) {
+            Figure a = Figure(fig);
+            if (this.Area() < a.Area()) return -1;
+            else if (this.Area() == a.Area()) return 0;
+            else return 1; 
+        }
     }
+}
      interface IPrint
         {
             void Print();
