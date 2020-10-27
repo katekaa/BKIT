@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FigureCollections;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -10,6 +11,21 @@ using System.Threading.Tasks;
 
 namespace lab2Csh
 {
+    class FigureCheck : IMatrixCheckEmpty<Figure>
+    {
+        public Figure getEmptyElement()
+        {
+            return null;
+        }
+        public bool checkEmptyElement(Figure element)
+        {
+            
+            if (element == null) return true;
+            return false;
+        }
+    }
+
+
     abstract class Figure: IComparable
     {
         public string Type { get; set; }
@@ -52,7 +68,7 @@ namespace lab2Csh
             public Rectangle(int x, int y) {            
                height = x;                
                width = y;                
-               this.Type = "Прямоугольник со сторонами " + height.ToString() + " и " + width.ToString();
+               this.Type = "Прямоугольник " ;
             }
             public override double Area()
             {
@@ -64,7 +80,7 @@ namespace lab2Csh
         }
     class Square : Rectangle {
         public Square(int a) : base (a, a) {
-            this.Type = "Квадрат со стороной " + height.ToString();
+            this.Type = "Квадрат ";
         }
     }
     class Circle : Figure, IPrint {
@@ -79,7 +95,7 @@ namespace lab2Csh
         }
         public Circle(int a) {
             radius = a;
-            Type = "Круг с радиусом " + radius.ToString();
+            Type = "Круг ";
         }
         public override double Area() {
             return Math.Round(radius * radius * Math.PI, 3);
@@ -115,8 +131,15 @@ namespace lab2Csh
             foreach (Figure fig in arr2) Console.WriteLine(fig.ToString());
             arr2.Sort();
             foreach (Figure fig in arr2) Console.WriteLine(fig.ToString());
-            Console.ReadKey();
+            
 
+            Console.WriteLine("\nРабота с разреженной матрицей на 3 измерения");
+            Matrix<Figure> figs = new Matrix<Figure>(3, 3, 3, new FigureCheck());
+            figs[0, 0, 0] = first;
+            figs[1, 1, 1] = second;
+            figs[2, 2, 2] = third;
+            Console.WriteLine(figs.ToString());
+            Console.ReadKey();
 
 
 

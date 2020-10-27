@@ -21,6 +21,7 @@ namespace FigureCollections
         /// Количество элементов по вертикали (максимальное количество строк)
         /// </summary>
         int maxY;
+        int maxZ;
 
         /// <summary>
         /// Реализация интерфейса для проверки пустого элемента
@@ -30,28 +31,29 @@ namespace FigureCollections
         /// <summary>
         /// Конструктор
         /// </summary>
-        public Matrix(int px, int py, IMatrixCheckEmpty<T> сheckEmptyParam)
+        public Matrix(int px, int py, int pz, IMatrixCheckEmpty<T> сheckEmptyParam)
         {
             this.maxX = px;
             this.maxY = py;
+            this.maxZ = pz;
             this.сheckEmpty = сheckEmptyParam;
         }
 
         /// <summary>
         /// Индексатор для доступа к данных
         /// </summary>
-        public T this[int x, int y]
+        public T this[int x, int y, int z]
         {
             set
             {
-                CheckBounds(x, y);
-                string key = DictKey(x, y);
+                CheckBounds(x, y, z);
+                string key = DictKey(x, y,z);
                 this._matrix.Add(key, value);
             }
             get
             {
-                CheckBounds(x, y);
-                string key = DictKey(x, y);
+                CheckBounds(x, y, z);
+                string key = DictKey(x, y, z);
                 if (this._matrix.ContainsKey(key))
                 {
                     return this._matrix[key];
@@ -66,7 +68,7 @@ namespace FigureCollections
         /// <summary>
         /// Проверка границ
         /// </summary>
-        void CheckBounds(int x, int y)
+        void CheckBounds(int x, int y, int z)
         {
             if (x < 0 || x >= this.maxX)
             {
@@ -76,14 +78,15 @@ namespace FigureCollections
             {
                 throw new ArgumentOutOfRangeException("y", "y=" + y + " выходит за границы");
             }
+            if (z<0 || z>=this.maxZ) throw new ArgumentOutOfRangeException("z", "z=" + z + " выходит за границы");
         }
 
         /// <summary>
         /// Формирование ключа
         /// </summary>
-        string DictKey(int x, int y)
+        string DictKey(int x, int y, int z)
         {
-            return x.ToString() + "_" + y.ToString();
+            return x.ToString() + "_" + y.ToString()+ "_"+ z.ToString();
         }
 
         /// <summary>
@@ -98,30 +101,34 @@ namespace FigureCollections
 
             StringBuilder b = new StringBuilder();
 
-            for (int j = 0; j < this.maxY; j++)
+            for (int k = 0; k < this.maxZ; k++)
             {
-                b.Append("[");
-                for (int i = 0; i < this.maxX; i++)
+                for (int j = 0; j < this.maxY; j++)
                 {
-                    //Добавление разделителя-табуляции
-                    if (i > 0)
+                    b.Append("[");
+                    for (int i = 0; i < this.maxX; i++)
                     {
-                        b.Append("\t");
+                        //Добавление разделителя-табуляции
+                        if (i > 0)
+                        {
+                            b.Append("\t");
+                        }
+                        //Если текущий элемент не пустой
+                        if (!this.сheckEmpty.checkEmptyElement(this[i, j,k]))
+                        {
+                            //Добавить приведенный к строке текущий элемент
+                            b.Append(this[i, j,k].ToString());
+                        }
+                        else
+                        {
+                            //Иначе добавить признак пустого значения
+                            b.Append(" - ");
+                        }
                     }
-                    //Если текущий элемент не пустой
-                    if (!this.сheckEmpty.checkEmptyElement(this[i, j]))
-                    {
-                        //Добавить приведенный к строке текущий элемент
-                        b.Append(this[i, j].ToString());
-                    }
-                    else
-                    {
-                        //Иначе добавить признак пустого значения
-                        b.Append(" - ");
-                    }
+                    b.Append("]  ");
                 }
-                b.Append("]\n");
-            }
+                b.Append("\n");
+                    } 
             return b.ToString();
         }
     }

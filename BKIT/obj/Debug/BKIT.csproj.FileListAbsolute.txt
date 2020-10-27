@@ -5,3 +5,10 @@ C:\Users\katri\source\repos\katekaa\BKIT\BKIT\bin\Debug\BKIT.exe
 C:\Users\katri\source\repos\katekaa\BKIT\BKIT\bin\Debug\BKIT.pdb
 C:\Users\katri\source\repos\katekaa\BKIT\BKIT\obj\Debug\BKIT.exe
 C:\Users\katri\source\repos\katekaa\BKIT\BKIT\obj\Debug\BKIT.pdb
+D:\source\repos\katekaa\BKIT\BKIT\bin\Debug\BKIT.exe.config
+D:\source\repos\katekaa\BKIT\BKIT\bin\Debug\BKIT.exe
+D:\source\repos\katekaa\BKIT\BKIT\bin\Debug\BKIT.pdb
+D:\source\repos\katekaa\BKIT\BKIT\obj\Debug\BKIT.csprojAssemblyReference.cache
+D:\source\repos\katekaa\BKIT\BKIT\obj\Debug\BKIT.csproj.CoreCompileInputs.cache
+D:\source\repos\katekaa\BKIT\BKIT\obj\Debug\BKIT.exe
+D:\source\repos\katekaa\BKIT\BKIT\obj\Debug\BKIT.pdb
