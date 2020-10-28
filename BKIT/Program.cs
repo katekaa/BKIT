@@ -139,7 +139,22 @@ namespace lab2Csh
             figs[1, 1, 1] = second;
             figs[2, 2, 2] = third;
             Console.WriteLine(figs.ToString());
-            Console.ReadKey();
+            
+
+            Console.WriteLine("\n\nРабота со стеком");
+            SimpleStack<Figure> figs2 = new SimpleStack<Figure>();
+            figs2.Push(first);
+            figs2.Push(second);
+            figs2.Push(third);
+            foreach (var o in figs2) Console.WriteLine(figs2.Pop());
+            figs2.Push(first);
+            figs2.Push(second);
+            figs2.Push(third);
+            figs2.Sort();
+            Console.WriteLine("\nПосле сортировки:");
+            foreach (var o in figs2) Console.WriteLine(figs2.Pop());
+
+
 
 
 
