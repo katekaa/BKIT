@@ -6,18 +6,12 @@ using System.Text;
 namespace FigureCollections
 {
     public class Matrix<T>
-    {
-       
-        Dictionary<string, T> _matrix = new Dictionary<string, T>();
-
-       
+    {       
+        Dictionary<string, T> _matrix = new Dictionary<string, T>();       
         int maxX;
         int maxY;
-        int maxZ;
-
-       
+        int maxZ;       
         IMatrixCheckEmpty<T> сheckEmpty;
-
        
         public Matrix(int px, int py, int pz, IMatrixCheckEmpty<T> сheckEmptyParam)
         {
